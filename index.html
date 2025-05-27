@@ -144,7 +144,7 @@
         
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding: 20px 0;
         }
@@ -232,7 +232,102 @@
             50% { transform: scale(1.1); }
         }
         
-        /* Mobile Optimizations */
+        .gift-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .gift-modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            position: relative;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .gift-modal-close {
+            color: #aaa;
+            float: left;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            top: 10px;
+            left: 15px;
+        }
+        
+        .gift-modal-close:hover {
+            color: #667eea;
+        }
+        
+        .gift-modal-title {
+            text-align: center;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        .gift-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .gift-option {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #444;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .gift-option:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border-color: #667eea;
+        }
+        
+        .gift-option-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .gift-option-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .gift-option-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+        }
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -317,31 +412,31 @@
                 <a href="#" class="link-card">
                     <span class="link-icon">🚌</span>
                     <h3 class="link-title">הרשמה להסעה</h3>
-                    <p class="link-description">הרשמו להסעה מאורגנת לאירוע</p>
+                    <p class="link-description">הרשמו להסעה מאורגנת לאירוع</p>
+                </a>
+                
+                <a href="#" class="link-card" id="giftLink">
+                    <span class="link-icon">💝</span>
+                    <h3 class="link-title">מתנה לזוג</h3>
+                    <p class="link-description">תרומה כספית דרך ביט או פייבוקס</p>
                 </a>
                 
                 <a href="#" class="link-card">
-                    <span class="link-icon">💳</span>
-                    <h3 class="link-title">מתנה בביט - זיו</h3>
-                    <p class="link-description">תרומה כספית דרך אפליקציית ביט</p>
+                    <span class="link-icon">📸</span>
+                    <h3 class="link-title">תיקייה להעלאת תמונות מהאירוע</h3>
+                    <p class="link-description">שתפו איתנו את התמונות שלכם</p>
                 </a>
                 
                 <a href="#" class="link-card">
-                    <span class="link-icon">💳</span>
-                    <h3 class="link-title">מתנה בביט - שיר</h3>
-                    <p class="link-description">תרומה כספית דרך אפליקציית ביט</p>
+                    <span class="link-icon">🎭</span>
+                    <h3 class="link-title">עובדות משעשעות</h3>
+                    <p class="link-description">דברים מעניינים על שיר וזיו</p>
                 </a>
                 
-                <a href="#" class="link-card">
-                    <span class="link-icon">💰</span>
-                    <h3 class="link-title">מתנה בפייבוקס - זיו</h3>
-                    <p class="link-description">תרומה כספית דרך פייבוקס</p>
-                </a>
-                
-                <a href="#" class="link-card">
-                    <span class="link-icon">💰</span>
-                    <h3 class="link-title">מתנה בפייבוקס - שיר</h3>
-                    <p class="link-description">תרומה כספית דרך פייבוקס</p>
+                <a href="https://cataas.com/cat" class="link-card" target="_blank">
+                    <span class="link-icon">🐱</span>
+                    <h3 class="link-title">תמונה של חתול</h3>
+                    <p class="link-description">כי למה לא?</p>
                 </a>
             </div>
         </section>
@@ -353,9 +448,62 @@
         </footer>
     </div>
     
+    <!-- Gift Modal -->
+    <div id="giftModal" class="gift-modal">
+        <div class="gift-modal-content">
+            <span class="gift-modal-close">&times;</span>
+            <h2 class="gift-modal-title">בחרו את אופן התשלום המועדף עליכם</h2>
+            <div class="gift-options">
+                <a href="#" class="gift-option">
+                    <span class="gift-option-icon">💳</span>
+                    <div class="gift-option-title">ביט - זיו</div>
+                    <div class="gift-option-subtitle">תשלום דרך ביט</div>
+                </a>
+                <a href="#" class="gift-option">
+                    <span class="gift-option-icon">💳</span>
+                    <div class="gift-option-title">ביט - שיר</div>
+                    <div class="gift-option-subtitle">תשלום דרך ביט</div>
+                </a>
+                <a href="#" class="gift-option">
+                    <span class="gift-option-icon">💰</span>
+                    <div class="gift-option-title">פייבוקס - זיו</div>
+                    <div class="gift-option-subtitle">תשלום דרך פייבוקס</div>
+                </a>
+                <a href="#" class="gift-option">
+                    <span class="gift-option-icon">💰</span>
+                    <div class="gift-option-title">פייבוקס - שיר</div>
+                    <div class="gift-option-subtitle">תשלום דרך פייבוקס</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
     <script>
+        // Gift modal functionality
+        const giftModal = document.getElementById('giftModal');
+        const giftLink = document.getElementById('giftLink');
+        const giftClose = document.querySelector('.gift-modal-close');
+        
+        giftLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            giftModal.style.display = 'block';
+        });
+        
+        giftClose.addEventListener('click', function() {
+            giftModal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', function(e) {
+            if (e.target === giftModal) {
+                giftModal.style.display = 'none';
+            }
+        });
+        
         // Add smooth scrolling for better mobile experience
         document.querySelectorAll('.link-card').forEach(card => {
+            // Skip the gift link as it has its own handler
+            if (card.id === 'giftLink') return;
+            
             card.addEventListener('click', function(e) {
                 // Add ripple effect on click
                 const ripple = document.createElement('span');

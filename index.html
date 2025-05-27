@@ -94,31 +94,20 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
         }
         
-        .photo-placeholder {
+        .wedding-photo {
             width: 100%;
             max-width: 400px;
-            height: 300px;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-            border: 3px dashed #ccc;
+            height: auto;
             border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             margin: 0 auto 20px;
-            position: relative;
-            overflow: hidden;
+            display: block;
             transition: all 0.3s ease;
         }
         
-        .photo-placeholder:hover {
+        .wedding-photo:hover {
             transform: scale(1.02);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-        
-        .photo-placeholder::before {
-            content: '📸';
-            font-size: 4rem;
-            opacity: 0.5;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
         
         .photo-caption {
@@ -264,8 +253,10 @@
                 margin-bottom: 30px;
             }
             
-            .photo-placeholder {
-                height: 250px;
+            .wedding-photo {
+                height: auto;
+                max-height: 250px;
+                object-fit: cover;
             }
             
             .links-grid {
@@ -287,12 +278,9 @@
                 font-size: 1.8rem;
             }
             
-            .photo-placeholder {
-                height: 200px;
-            }
-            
-            .photo-placeholder::before {
-                font-size: 3rem;
+            .wedding-photo {
+                max-height: 200px;
+                object-fit: cover;
             }
             
             .link-icon {
@@ -313,9 +301,8 @@
         </header>
         
         <section class="photo-section">
-            <div class="photo-placeholder" id="weddingPhoto">
-            </div>
-            <p class="photo-caption">התמונה שלנו תהיה כאן בקרוב ❤️</p>
+            <img src="20250526_192056.jpg" alt="שיר וזיו" class="wedding-photo" id="weddingPhoto">
+            <p class="photo-caption">שיר וזיו ❤️</p>
         </section>
         
         <section class="links-section">
@@ -335,13 +322,25 @@
                 
                 <a href="#" class="link-card">
                     <span class="link-icon">💳</span>
-                    <h3 class="link-title">מתנה בביט</h3>
+                    <h3 class="link-title">מתנה בביט - זיו</h3>
+                    <p class="link-description">תרומה כספית דרך אפליקציית ביט</p>
+                </a>
+                
+                <a href="#" class="link-card">
+                    <span class="link-icon">💳</span>
+                    <h3 class="link-title">מתנה בביט - שיר</h3>
                     <p class="link-description">תרומה כספית דרך אפליקציית ביט</p>
                 </a>
                 
                 <a href="#" class="link-card">
                     <span class="link-icon">💰</span>
-                    <h3 class="link-title">מתנה בפייבוקס</h3>
+                    <h3 class="link-title">מתנה בפייבוקס - זיו</h3>
+                    <p class="link-description">תרומה כספית דרך פייבוקס</p>
+                </a>
+                
+                <a href="#" class="link-card">
+                    <span class="link-icon">💰</span>
+                    <h3 class="link-title">מתנה בפייבוקס - שיר</h3>
                     <p class="link-description">תרומה כספית דרך פייבוקס</p>
                 </a>
             </div>
@@ -398,7 +397,7 @@
         `;
         document.head.appendChild(style);
         
-        // Simple photo placeholder interaction
+        // Simple photo interaction
         document.getElementById('weddingPhoto').addEventListener('click', function() {
             this.style.transform = 'scale(0.95)';
             setTimeout(() => {

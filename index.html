@@ -223,7 +223,9 @@
         }
         
         .hearts {
-            font-size: 1.5rem;
+            width: 60px;
+            height: 60px;
+            margin: 0 auto;
             animation: heartbeat 2s ease-in-out infinite;
         }
         
@@ -232,7 +234,7 @@
             50% { transform: scale(1.1); }
         }
         
-        .gift-modal {
+        .modal {
             display: none;
             position: fixed;
             z-index: 1000;
@@ -244,7 +246,7 @@
             backdrop-filter: blur(5px);
         }
         
-        .gift-modal-content {
+        .modal-content {
             background-color: white;
             margin: 15% auto;
             padding: 30px;
@@ -267,7 +269,7 @@
             }
         }
         
-        .gift-modal-close {
+        .modal-close {
             color: #aaa;
             float: left;
             font-size: 28px;
@@ -278,11 +280,11 @@
             left: 15px;
         }
         
-        .gift-modal-close:hover {
+        .modal-close:hover {
             color: #667eea;
         }
         
-        .gift-modal-title {
+        .modal-title {
             text-align: center;
             font-size: 1.5rem;
             margin-bottom: 25px;
@@ -290,13 +292,13 @@
             font-weight: 600;
         }
         
-        .gift-options {
+        .gift-options, .nav-options {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 15px;
         }
         
-        .gift-option {
+        .option {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             padding: 20px;
             border-radius: 12px;
@@ -307,27 +309,28 @@
             border: 2px solid transparent;
         }
         
-        .gift-option:hover {
+        .option:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             border-color: #667eea;
         }
         
-        .gift-option-icon {
+        .option-icon {
             font-size: 2rem;
             margin-bottom: 10px;
             display: block;
         }
         
-        .gift-option-title {
+        .option-title {
             font-weight: 600;
             margin-bottom: 8px;
         }
         
-        .gift-option-subtitle {
+        .option-subtitle {
             font-size: 0.9rem;
             color: #666;
         }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -403,16 +406,16 @@
         <section class="links-section">
             <h2 class="section-title">פרטים חשובים</h2>
             <div class="links-grid">
-                <a href="#" class="link-card">
+                <a href="#" class="link-card" id="navLink">
                     <span class="link-icon">🚗</span>
                     <h3 class="link-title">ניווט בווייז</h3>
                     <p class="link-description">ניווט ישיר למקום האירוע</p>
                 </a>
                 
-                <a href="#" class="link-card">
+                <a href="https://forms.gle/2sEnbFMQeL2qUdGZ7" class="link-card" target="_blank">
                     <span class="link-icon">🚌</span>
                     <h3 class="link-title">הרשמה להסעה</h3>
-                    <p class="link-description">הרשמו להסעה מאורגנת לאירוع</p>
+                    <p class="link-description">הרשמו להסעה מאורגנת לאירוע</p>
                 </a>
                 
                 <a href="#" class="link-card" id="giftLink">
@@ -444,65 +447,116 @@
         <footer class="footer">
             <p class="footer-text">בתשוקה ובהתרגשות</p>
             <p class="footer-text">שיר וזיו</p>
-            <div class="hearts">💕 💖 💕</div>
+            <img src="hearts.svg" alt="hearts" class="hearts">
         </footer>
     </div>
     
     <!-- Gift Modal -->
-    <div id="giftModal" class="gift-modal">
-        <div class="gift-modal-content">
-            <span class="gift-modal-close">&times;</span>
-            <h2 class="gift-modal-title">בחרו את אופן התשלום המועדף עליכם</h2>
+    <div id="giftModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="giftModal">&times;</span>
+            <h2 class="modal-title">בחרו את אופן התשלום המועדף עליכם</h2>
             <div class="gift-options">
-                <a href="#" class="gift-option">
-                    <span class="gift-option-icon">💳</span>
-                    <div class="gift-option-title">ביט - זיו</div>
-                    <div class="gift-option-subtitle">תשלום דרך ביט</div>
+                <a href="https://www.bitpay.co.il/app/me/7459C281-1C17-3CAE-263B-574FF45638CBECA3" class="option" target="_blank">
+                    <span class="option-icon">💳</span>
+                    <div class="option-title">ביט - זיו</div>
+                    <div class="option-subtitle">תשלום דרך ביט</div>
                 </a>
-                <a href="#" class="gift-option">
-                    <span class="gift-option-icon">💳</span>
-                    <div class="gift-option-title">ביט - שיר</div>
-                    <div class="gift-option-subtitle">תשלום דרך ביט</div>
+                <a href="https://www.bitpay.co.il/app/me/B49BBD29-11BA-3666-A633-48D245B0C6E5FA55" class="option" target="_blank">
+                    <span class="option-icon">💳</span>
+                    <div class="option-title">ביט - שיר</div>
+                    <div class="option-subtitle">תשלום דרך ביט</div>
                 </a>
-                <a href="#" class="gift-option">
-                    <span class="gift-option-icon">💰</span>
-                    <div class="gift-option-title">פייבוקס - זיו</div>
-                    <div class="gift-option-subtitle">תשלום דרך פייבוקס</div>
+                <a href="https://link.payboxapp.com/1ZPWuA9qfoJkNkd46" class="option" target="_blank">
+                    <span class="option-icon">💰</span>
+                    <div class="option-title">פייבוקס - זיו</div>
+                    <div class="option-subtitle">תשלום דרך פייבוקס</div>
                 </a>
-                <a href="#" class="gift-option">
-                    <span class="gift-option-icon">💰</span>
-                    <div class="gift-option-title">פייבוקס - שיר</div>
-                    <div class="gift-option-subtitle">תשלום דרך פייבוקס</div>
+                <a href="https://link.payboxapp.com/ZLNH7Pgz5bs5QrAm9" class="option" target="_blank">
+                    <span class="option-icon">💰</span>
+                    <div class="option-title">פייבוקס - שיר</div>
+                    <div class="option-subtitle">תשלום דרך פייבוקס</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Navigation Modal -->
+    <div id="navModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" data-modal="navModal">&times;</span>
+            <h2 class="modal-title">בחרו את אפליקציית הניווט המועדפת עליכם</h2>
+            <div class="nav-options">
+                <a href="https://maps.app.goo.gl/Y9MymzeXbN6kCobn9" class="option" target="_blank">
+                    <span class="option-icon">🗺️</span>
+                    <div class="option-title">Google Maps</div>
+                    <div class="option-subtitle">פתח ב-Google Maps</div>
+                </a>
+                <a href="https://waze.com/ul?ll=32.0853,34.7818&navigate=yes" class="option" target="_blank">
+                    <span class="option-icon">🚗</span>
+                    <div class="option-title">Waze</div>
+                    <div class="option-subtitle">פתח ב-Waze</div>
+                </a>
+                <a href="maps://maps.google.com/maps?daddr=32.0853,34.7818" class="option">
+                    <span class="option-icon">🍎</span>
+                    <div class="option-title">Apple Maps</div>
+                    <div class="option-subtitle">פתח ב-Apple Maps</div>
+                </a>
+                <a href="https://maps.app.goo.gl/Y9MymzeXbN6kCobn9" class="option" target="_blank">
+                    <span class="option-icon">📍</span>
+                    <div class="option-title">ברירת מחדל</div>
+                    <div class="option-subtitle">פתח באפליקציה המועדפת</div>
                 </a>
             </div>
         </div>
     </div>
     
     <script>
-        // Gift modal functionality
-        const giftModal = document.getElementById('giftModal');
-        const giftLink = document.getElementById('giftLink');
-        const giftClose = document.querySelector('.gift-modal-close');
+        // Modal functionality
+        const modals = {
+            gift: document.getElementById('giftModal'),
+            nav: document.getElementById('navModal')
+        };
         
-        giftLink.addEventListener('click', function(e) {
+        const links = {
+            gift: document.getElementById('giftLink'),
+            nav: document.getElementById('navLink')
+        };
+        
+        const closeButtons = document.querySelectorAll('.modal-close');
+        
+        // Open modals
+        links.gift.addEventListener('click', function(e) {
             e.preventDefault();
-            giftModal.style.display = 'block';
+            modals.gift.style.display = 'block';
         });
         
-        giftClose.addEventListener('click', function() {
-            giftModal.style.display = 'none';
+        links.nav.addEventListener('click', function(e) {
+            e.preventDefault();
+            modals.nav.style.display = 'block';
         });
         
+        // Close modals
+        closeButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const modalId = this.getAttribute('data-modal');
+                document.getElementById(modalId).style.display = 'none';
+            });
+        });
+        
+        // Close modal when clicking outside
         window.addEventListener('click', function(e) {
-            if (e.target === giftModal) {
-                giftModal.style.display = 'none';
-            }
+            Object.values(modals).forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
         });
         
         // Add smooth scrolling for better mobile experience
         document.querySelectorAll('.link-card').forEach(card => {
-            // Skip the gift link as it has its own handler
-            if (card.id === 'giftLink') return;
+            // Skip cards that have modal handlers
+            if (card.id === 'giftLink' || card.id === 'navLink') return;
             
             card.addEventListener('click', function(e) {
                 // Add ripple effect on click

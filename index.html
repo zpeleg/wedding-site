@@ -39,7 +39,7 @@
             text-align: center;
             margin-bottom: 40px;
             padding: 30px 20px;
-            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
             border-radius: 15px;
             color: white;
             position: relative;
@@ -47,25 +47,43 @@
         }
         
         .header::before {
-            content: '';
+            content: '✨';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: repeating-linear-gradient(
-                45deg,
-                transparent,
-                transparent 10px,
-                rgba(255, 255, 255, 0.1) 10px,
-                rgba(255, 255, 255, 0.1) 20px
-            );
-            animation: shimmer 20s linear infinite;
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: floating 3s ease-in-out infinite;
         }
         
-        @keyframes shimmer {
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        .header::after {
+            content: '💕';
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.6);
+            animation: floating 4s ease-in-out infinite reverse;
+            animation-delay: 1s;
+        }
+        
+        @keyframes floating {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px);
+                left: 10%;
+                top: 10%;
+            }
+            25% {
+                transform: translateY(-20px) translateX(10px);
+                left: 80%;
+                top: 20%;
+            }
+            50% {
+                transform: translateY(-10px) translateX(-5px);
+                left: 70%;
+                top: 70%;
+            }
+            75% {
+                transform: translateY(-25px) translateX(15px);
+                left: 20%;
+                top: 80%;
+            }
         }
         
         .main-title {
@@ -126,7 +144,7 @@
             font-weight: 600;
             text-align: center;
             margin-bottom: 30px;
-            color: #667eea;
+            color: #ff9a9e;
             position: relative;
         }
         
@@ -138,7 +156,7 @@
             transform: translateX(50%);
             width: 60px;
             height: 3px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
             border-radius: 2px;
         }
         
@@ -169,7 +187,7 @@
             right: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            background: linear-gradient(135deg, rgba(255, 154, 158, 0.1), rgba(254, 207, 239, 0.1));
             opacity: 0;
             transition: opacity 0.3s ease;
         }
@@ -177,7 +195,7 @@
         .link-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
+            border-color: #ff9a9e;
         }
         
         .link-card:hover::before {
@@ -212,7 +230,7 @@
             text-align: center;
             margin-top: 50px;
             padding: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
             border-radius: 15px;
             color: white;
         }
@@ -282,14 +300,14 @@
         }
         
         .modal-close:hover {
-            color: #667eea;
+            color: #ff9a9e;
         }
         
         .modal-title {
             text-align: center;
             font-size: 1.5rem;
             margin-bottom: 25px;
-            color: #667eea;
+            color: #ff9a9e;
             font-weight: 600;
         }
         
@@ -313,7 +331,7 @@
         .option:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border-color: #667eea;
+            border-color: #ff9a9e;
         }
         
         .option-icon {
@@ -416,7 +434,7 @@
                 <a href="https://forms.gle/2sEnbFMQeL2qUdGZ7" class="link-card" target="_blank">
                     <span class="link-icon">🚌</span>
                     <h3 class="link-title">הרשמה להסעה</h3>
-                    <p class="link-description">הרשמו להסעה מאורגנת לאירוע</p>
+                    <p class="link-description">הרשמו להסעה מאורגנת לאירוع</p>
                 </a>
                 
                 <a href="#" class="link-card" id="giftLink">
@@ -425,7 +443,7 @@
                     <p class="link-description">מתנה דרך ביט או פייבוקס (כי אנחנו לא מוכנים לשלם את העמלה)</p>
                 </a>
                 
-                <a href="https://drive.google.com/drive/folders/1WbTXBvzrjIzelbul56MDLy75yjqtDpFB?usp=sharing" class="link-card">
+                <a href="https://drive.google.com/drive/folders/1WbTXBvzrjIzelbul56MDLy75yjqtDpFB?usp=sharing" class="link-card" target="_blank">
                     <span class="link-icon">📸</span>
                     <h3 class="link-title">תיקייה להעלאת תמונות מהאירוע</h3>
                     <p class="link-description">שתפו איתנו את התמונות שלכם</p>
@@ -458,24 +476,14 @@
             <span class="modal-close" data-modal="giftModal">&times;</span>
             <h2 class="modal-title">בחרו את אופן התשלום המועדף עליכם</h2>
             <div class="gift-options">
-                <a href="https://www.bitpay.co.il/app/me/7459C281-1C17-3CAE-263B-574FF45638CBECA3" class="option" target="_blank">
+                <a href="#" class="option" id="bitOption">
                     <span class="option-icon">💳</span>
-                    <div class="option-title">ביט - זיו</div>
+                    <div class="option-title">ביט</div>
                     <div class="option-subtitle">תשלום דרך ביט</div>
                 </a>
-                <a href="https://www.bitpay.co.il/app/me/B49BBD29-11BA-3666-A633-48D245B0C6E5FA55" class="option" target="_blank">
-                    <span class="option-icon">💳</span>
-                    <div class="option-title">ביט - שיר</div>
-                    <div class="option-subtitle">תשלום דרך ביט</div>
-                </a>
-                <a href="https://link.payboxapp.com/1ZPWuA9qfoJkNkd46" class="option" target="_blank">
+                <a href="#" class="option" id="payboxOption">
                     <span class="option-icon">💰</span>
-                    <div class="option-title">פייבוקס - זיו</div>
-                    <div class="option-subtitle">תשלום דרך פייבוקס</div>
-                </a>
-                <a href="https://link.payboxapp.com/ZLNH7Pgz5bs5QrAm9" class="option" target="_blank">
-                    <span class="option-icon">💰</span>
-                    <div class="option-title">פייבוקס - שיר</div>
+                    <div class="option-title">פייבוקס</div>
                     <div class="option-subtitle">תשלום דרך פייבוקס</div>
                 </a>
             </div>
@@ -516,6 +524,22 @@
         
         const closeButtons = document.querySelectorAll('.modal-close');
         
+        // Gift links arrays
+        const bitLinks = [
+            'https://www.bitpay.co.il/app/me/7459C281-1C17-3CAE-263B-574FF45638CBECA3', // זיו
+            'https://www.bitpay.co.il/app/me/B49BBD29-11BA-3666-A633-48D245B0C6E5FA55'  // שיר
+        ];
+        
+        const payboxLinks = [
+            'https://link.payboxapp.com/1ZPWuA9qfoJkNkd46', // זיו
+            'https://link.payboxapp.com/ZLNH7Pgz5bs5QrAm9'  // שיר
+        ];
+        
+        // Function to get random link
+        function getRandomLink(linksArray) {
+            return linksArray[Math.floor(Math.random() * linksArray.length)];
+        }
+        
         // Open modals
         links.gift.addEventListener('click', function(e) {
             e.preventDefault();
@@ -525,6 +549,19 @@
         links.nav.addEventListener('click', function(e) {
             e.preventDefault();
             modals.nav.style.display = 'block';
+        });
+        
+        // Handle gift option clicks
+        document.getElementById('bitOption').addEventListener('click', function(e) {
+            e.preventDefault();
+            const randomBitLink = getRandomLink(bitLinks);
+            window.open(randomBitLink, '_blank');
+        });
+        
+        document.getElementById('payboxOption').addEventListener('click', function(e) {
+            e.preventDefault();
+            const randomPayboxLink = getRandomLink(payboxLinks);
+            window.open(randomPayboxLink, '_blank');
         });
         
         // Close modals
@@ -561,7 +598,7 @@
                     position: absolute;
                     width: ${size}px;
                     height: ${size}px;
-                    background: rgba(102, 126, 234, 0.3);
+                    background: rgba(255, 154, 158, 0.3);
                     border-radius: 50%;
                     left: ${x}px;
                     top: ${y}px;

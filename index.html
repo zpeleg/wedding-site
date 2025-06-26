@@ -283,6 +283,10 @@
             animation: modalSlideIn 0.3s ease-out;
         }
         
+        .modal-content-large {
+            max-width: 700px;
+        }
+        
         @keyframes modalSlideIn {
             from {
                 transform: translateY(-50px);
@@ -358,6 +362,16 @@
             color: #666;
         }
         
+        .invitation-image {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            margin: 0 auto;
+            display: block;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 margin: 10px;
@@ -395,6 +409,11 @@
             
             .section-title {
                 font-size: 1.6rem;
+            }
+            
+            .modal-content {
+                margin: 5% auto;
+                width: 95%;
             }
         }
         
@@ -457,10 +476,10 @@
                     <p class="link-description">שתפו איתנו את התמונות שלכם!</p>
                 </a>
                 
-                <a href="#" class="link-card">
-                    <span class="link-icon">🎭</span>
-                    <h3 class="link-title">קופסה ריקה</h3>
-                    <p class="link-description">כדי שיעבוד עם הדסקטופ יפה כזה</p>
+                <a href="#" class="link-card" id="inviteLink">
+                    <span class="link-icon">💌</span>
+                    <h3 class="link-title">ההזמנה</h3>
+                    <p class="link-description">למקרה שאיבדתם אותה ושמרתם את הלינק הזה</p>
                 </a>
                 
                 <a href="https://cataas.com/cat" class="link-card" target="_blank">
@@ -518,16 +537,27 @@
         </div>
     </div>
     
+    <!-- Invitation Modal -->
+    <div id="inviteModal" class="modal">
+        <div class="modal-content modal-content-large">
+            <span class="modal-close" data-modal="inviteModal">&times;</span>
+            <h2 class="modal-title">ההזמנה שלכם</h2>
+            <img src="invite.png" alt="הזמנה לחתונה" class="invitation-image">
+        </div>
+    </div>
+    
     <script>
         // Modal functionality
         const modals = {
             gift: document.getElementById('giftModal'),
-            nav: document.getElementById('navModal')
+            nav: document.getElementById('navModal'),
+            invite: document.getElementById('inviteModal')
         };
         
         const links = {
             gift: document.getElementById('giftLink'),
-            nav: document.getElementById('navLink')
+            nav: document.getElementById('navLink'),
+            invite: document.getElementById('inviteLink')
         };
         
         const closeButtons = document.querySelectorAll('.modal-close');
@@ -557,6 +587,11 @@
         links.nav.addEventListener('click', function(e) {
             e.preventDefault();
             modals.nav.style.display = 'block';
+        });
+        
+        links.invite.addEventListener('click', function(e) {
+            e.preventDefault();
+            modals.invite.style.display = 'block';
         });
         
         // Handle gift option clicks
@@ -592,7 +627,7 @@
         // Add smooth scrolling for better mobile experience
         document.querySelectorAll('.link-card').forEach(card => {
             // Skip cards that have modal handlers
-            if (card.id === 'giftLink' || card.id === 'navLink') return;
+            if (card.id === 'giftLink' || card.id === 'navLink' || card.id === 'inviteLink') return;
             
             card.addEventListener('click', function(e) {
                 // Add ripple effect on click

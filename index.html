@@ -166,7 +166,7 @@
         
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 20px;
             padding: 20px 0;
         }
@@ -182,6 +182,10 @@
             border: 2px solid transparent;
             position: relative;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         
         .link-card::before {
@@ -259,51 +263,56 @@
             50% { transform: scale(1.1); }
         }
         
+        /* --- MODAL STYLES --- */
         .modal {
-            display: none;
+            display: none; /* Changed to 'flex' with JS to show */
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
+            background-color: rgba(0,0,0,0.6);
             backdrop-filter: blur(5px);
+            /* Centering content */
+            align-items: center;
+            justify-content: center;
+            padding: 20px; /* Padding to prevent modal touching screen edges */
         }
         
         .modal-content {
             background-color: white;
-            margin: 15% auto;
+            /* 'margin: 15% auto' removed, flexbox on parent handles centering */
             padding: 30px;
             border-radius: 20px;
-            width: 90%;
+            width: 100%; /* Be responsive within the padded parent */
             max-width: 500px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             position: relative;
             animation: modalSlideIn 0.3s ease-out;
-            max-height: 80vh;
-            overflow-y: auto;
+            max-height: 90vh; /* Ensure modal never exceeds viewport height */
+            overflow-y: auto; /* Add scroll for overflowing content */
+            text-align: right; /* Ensure content inside is right-aligned */
         }
         
         .modal-content-large {
             max-width: 700px;
-            max-height: 90vh;
         }
         
         @keyframes modalSlideIn {
             from {
-                transform: translateY(-50px);
+                transform: translateY(-50px) scale(0.95);
                 opacity: 0;
             }
             to {
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
                 opacity: 1;
             }
         }
         
         .modal-close {
             color: #aaa;
-            float: left;
+            float: left; /* Keep it on the left for LTR context of the X symbol */
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
@@ -417,8 +426,7 @@
             }
             
             .modal-content {
-                margin: 5% auto;
-                width: 95%;
+                padding: 20px;
             }
         }
         
@@ -429,7 +437,10 @@
             
             .wedding-photo {
                 max-height: 200px;
-                object-fit: cover;
+            }
+
+            .gift-options, .nav-options {
+                grid-template-columns: 1fr;
             }
             
             .link-icon {
@@ -450,7 +461,7 @@
         </header>
         
         <section class="photo-section">
-            <img src="Large_photo.jpg" alt="שיר וזיו" class="wedding-photo" id="weddingPhoto">
+            <img src="https://placehold.co/600x400/ff9a9e/FFFFFF?text=Shir+%26+Ziv" alt="שיר וזיו" class="wedding-photo" id="weddingPhoto" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/FFFFFF?text=Image+Not+Found';">
             <p class="photo-caption">שיר וזיו ❤️</p>
         </section>
         
@@ -464,7 +475,7 @@
                 </a>
                 
                 <a href="#" class="link-card" id="navLink">
-                    <span class="link-icon">🚗</span>
+                    <span class="link-icon">🧭</span>
                     <h3 class="link-title">לינק לניווט</h3>
                     <p class="link-description">ניווט ישיר למקום האירוע</p>
                 </a>
@@ -477,14 +488,14 @@
                 
                 <a href="https://drive.google.com/drive/folders/1WbTXBvzrjIzelbul56MDLy75yjqtDpFB?usp=sharing" class="link-card" target="_blank">
                     <span class="link-icon">📸</span>
-                    <h3 class="link-title">תיקייה להעלאת תמונות מהאירוע</h3>
+                    <h3 class="link-title">העלאת תמונות מהאירוע</h3>
                     <p class="link-description">שתפו איתנו את התמונות שלכם!</p>
                 </a>
                 
                 <a href="#" class="link-card" id="inviteLink">
                     <span class="link-icon">💌</span>
                     <h3 class="link-title">ההזמנה</h3>
-                    <p class="link-description">למקרה שאיבדתם אותה ושמרתם את הלינק הזה</p>
+                    <p class="link-description">צפו בהזמנה המלאה שלנו</p>
                 </a>
                 
                 <a href="https://cataas.com/cat" class="link-card" target="_blank">
@@ -498,7 +509,7 @@
         <footer class="footer">
             <p class="footer-text">מחכים לחגוג איתכם,</p>
             <p class="footer-text">שיר וזיו</p>
-            <img src="hearts.svg" alt="hearts" class="hearts">
+            <img src="https://image.flaticon.com/icons/svg/1077/1077035.svg" alt="hearts" class="hearts" onerror="this.onerror=null;this.src='https://placehold.co/250x100/ff9a9e/FFFFFF?text=Hearts';">
         </footer>
     </div>
     
@@ -506,17 +517,17 @@
     <div id="giftModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" data-modal="giftModal">&times;</span>
-            <h2 class="modal-title">בחרו את אופן התשלום המועדף עליכם</h2>
+            <h2 class="modal-title">בחרו את אופן התשלום</h2>
             <div class="gift-options">
                 <a href="#" class="option" id="bitOption">
                     <span class="option-icon">💳</span>
                     <div class="option-title">ביט</div>
-                    <div class="option-subtitle">תשלום דרך ביט</div>
+                    <div class="option-subtitle">תשלום מאובטח דרך ביט</div>
                 </a>
                 <a href="#" class="option" id="payboxOption">
                     <span class="option-icon">💰</span>
                     <div class="option-title">פייבוקס</div>
-                    <div class="option-subtitle">תשלום דרך פייבוקס</div>
+                    <div class="option-subtitle">תשלום קל דרך פייבוקס</div>
                 </a>
             </div>
         </div>
@@ -526,7 +537,7 @@
     <div id="navModal" class="modal">
         <div class="modal-content">
             <span class="modal-close" data-modal="navModal">&times;</span>
-            <h2 class="modal-title">בחרו את אפליקציית הניווט המועדפת עליכם</h2>
+            <h2 class="modal-title">בחרו אפליקציית ניווט</h2>
             <div class="nav-options">
                 <a href="https://maps.app.goo.gl/Y9MymzeXbN6kCobn9" class="option" target="_blank">
                     <span class="option-icon">🗺️</span>
@@ -547,7 +558,7 @@
         <div class="modal-content modal-content-large">
             <span class="modal-close" data-modal="inviteModal">&times;</span>
             <h2 class="modal-title">ההזמנה שלכם</h2>
-            <img src="invite.png" alt="הזמנה לחתונה" class="invitation-image">
+            <img src="https://placehold.co/800x1131/fdefee/ff9a9e?text=Wedding+Invitation" alt="הזמנה לחתונה" class="invitation-image" onerror="this.onerror=null;this.src='https://placehold.co/800x1131/cccccc/FFFFFF?text=Invitation';">
         </div>
     </div>
     
@@ -586,17 +597,17 @@
         // Open modals
         links.gift.addEventListener('click', function(e) {
             e.preventDefault();
-            modals.gift.style.display = 'block';
+            modals.gift.style.display = 'flex'; // Use flex to enable centering
         });
         
         links.nav.addEventListener('click', function(e) {
             e.preventDefault();
-            modals.nav.style.display = 'block';
+            modals.nav.style.display = 'flex'; // Use flex to enable centering
         });
         
         links.invite.addEventListener('click', function(e) {
             e.preventDefault();
-            modals.invite.style.display = 'block';
+            modals.invite.style.display = 'flex'; // Use flex to enable centering
         });
         
         // Handle gift option clicks
@@ -620,7 +631,7 @@
             });
         });
         
-        // Close modal when clicking outside
+        // Close modal when clicking outside of the modal-content
         window.addEventListener('click', function(e) {
             Object.values(modals).forEach(modal => {
                 if (e.target === modal) {
@@ -653,6 +664,7 @@
                     transform: scale(0);
                     animation: ripple 0.6s ease-out;
                     pointer-events: none;
+                    z-index: 2;
                 `;
                 
                 this.appendChild(ripple);

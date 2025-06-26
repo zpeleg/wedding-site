@@ -281,10 +281,13 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             position: relative;
             animation: modalSlideIn 0.3s ease-out;
+            max-height: 80vh;
+            overflow-y: auto;
         }
         
         .modal-content-large {
             max-width: 700px;
+            max-height: 90vh;
         }
         
         @keyframes modalSlideIn {
@@ -370,6 +373,8 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
             margin: 0 auto;
             display: block;
+            max-height: 70vh;
+            object-fit: contain;
         }
         
         @media (max-width: 768px) {
@@ -445,7 +450,7 @@
         </header>
         
         <section class="photo-section">
-            <img src="20250526_192056.jpg" alt="שיר וזיו" class="wedding-photo" id="weddingPhoto">
+            <img src="Large_photo.jpg" alt="שיר וזיו" class="wedding-photo" id="weddingPhoto">
             <p class="photo-caption">שיר וזיו ❤️</p>
         </section>
         
